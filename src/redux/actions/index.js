@@ -13,13 +13,13 @@ export const receiveUsers = (users) => ({
 });
 
 const CLEAR_USERS = 'CLEAR_USERS';
-export const clearUsers = (username) => ({
+export const removeUsers = (username) => ({
   type: CLEAR_USERS, 
   payload: username,
 });
 
 const GET_USER_REPOS = 'GET_USER_REPOS';
-export const getUserRepos = (username) => ({
+export const receiveRepos = (username) => ({
   type: GET_USER_REPOS,
   payload: username
 });
@@ -34,17 +34,22 @@ const updateAlert = (message, cat) => ({
   
 });
 
-export const getUserAction = (username) => {
-  return (dispatch) => {
-    try {
-      axios.get(`https://api.github.com/search/users?q=${username}&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`);
-    } catch (error) {
-      console.log(error);
-    }
+const getUser = (username) => {
+  return async (dispatch) => {
+    await fetch(`https://api.github.com/users/${username}?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`, {
+      method: 'GET', 
+      headers: { 'Content-Type': 'application/json' }
+    })
+      .then(res => res.json())
+      .then(data => dispatch({
+        type: 'GET_USER',
+        payload: data
+      }))
+      .catch(err => console.log(err));
   };
 };
 
-const searchUsersAction = (username) => {
+const searchUsers = (username) => {
   return  (dispatch) => {  
     fetch(`https://api.github.com/search/users?q=${username}&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`, {
       method: 'GET', 
@@ -52,14 +57,41 @@ const searchUsersAction = (username) => {
     })
       .then(res => res.json())
       .then(data => dispatch({
-        type: 'RECEIVE_USERS',
+        type: 'SEARCH_USERS',
         payload: data.items
       }))
       .catch(err => console.log(err));
   };
 };
 
+const getUserRepos = (username) => {
+  return (dispatch) => {
+    fetch(`https://api.github.com/users/${username}/repos?per_page=5&sort=created:asc&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`, {
+      method: 'GET', 
+      headers: { 'Content-Type': 'application/json' }
+    })
+      .then(res => res.json())
+      .then(data => dispatch({
+        type: 'GET_USER_REPOS',
+        payload: data
+      }))
+      .catch(err => console.log(err));
+  };
+};
+
+const clearUsers = () => {
+  return (dispatch) => {
+    dispatch({
+      type: 'CLEAR_USERS',
+      payload: []
+    });
+  };
+};
+
 export {
-  searchUsersAction
+  searchUsers,
+  getUser,
+  getUserRepos,
+  clearUsers
 };
 

@@ -3,11 +3,12 @@ import RepoItem from 'components/repos/RepoItem';
 import PropTypes from 'prop-types';
 
 
-const Repos = ({ userRepos }) => {
+const Repos = (userRepos) => {
   return userRepos.map(repo => <RepoItem repo={repo} key={repo.id} />);
+  
 };
 
-Repos.PropTypes = {
+Repos.propTypes = {
   userRepos: PropTypes.array.isRequired
 };
 

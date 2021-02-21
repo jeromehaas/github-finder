@@ -9,7 +9,6 @@ import Search from 'components/users/Search';
 import Alert from 'components/layout/Alert';
 import About from 'components/pages/About';
 import { connect } from 'react-redux';
-import { getUserAction, searchUsersAction } from 'redux/actions/';
 
 
 const App = () => {
@@ -45,18 +44,18 @@ const App = () => {
     }, 5000);
   };
 
-  const clearUsers =  () => {
-    setUsers([]);
-  };
+  // const clearUsers =  () => {
+  //   setUsers([]);
+  // };
 
-  const getUserRepos = async (username) => {
-    setLoading(true);
-    const res = await axios.get(`https://api.github.com/users/${username}/repos?per_page=5&sort=created:asc&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`);
-    setUserRepos(res.data);
-    setTimeout(() => {
-      setLoading(false);
-    }, 200);
-  };
+  // const getUserRepos = async (username) => {
+  //   setLoading(true);
+  //   const res = await axios.get(`https://api.github.com/users/${username}/repos?per_page=5&sort=created:asc&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`);
+  //   setUserRepos(res.data);
+  //   setTimeout(() => {
+  //     setLoading(false);
+  //   }, 200);
+  // };
 
   return (
     <Router>
@@ -66,12 +65,12 @@ const App = () => {
           <Alert alert={alert} />
           <Switch>
             <Route exact path='/user/:login' render={props => (
-              <User { ...props } user={user} userRepos={userRepos} getUser={getUserAction} getUserRepos={getUserRepos} loading={loading} />
+              <User { ...props } user={user} userRepos={userRepos}  loading={loading} />
             )} />
             <Route exact path='/about' component={About} />
             <Route path='/' render={props => (
               <Fragment>
-                <Search  clearUsers={clearUsers} showClear={ users.length ? true : false} updateAlert={updateAlert} />
+                <Search   showClear={ users.length ? true : false} updateAlert={updateAlert} />
                 <Users users={users} loading={loading} />
               </Fragment>
             )} />

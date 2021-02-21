@@ -1,12 +1,15 @@
 import React, { Component, useState } from 'react';
 import PropTypes from 'prop-types';
-import { searchUsersAction } from 'redux/actions/';
+import { searchUsers } from 'redux/actions/';
 import { connect, useSelector, useDispatch } from 'react-redux';
+import { clearUsers } from 'redux/actions';
 
-const Search = (props, { clearUsers, showClear, updateAlert }) =>  {
 
+const Search = (props, { showClear, updateAlert }) =>  {
+  
   const dispatch = useDispatch();
-
+  const users = useSelector((state) => state.users);
+  
   const [search, setSearch] = useState('');
 
   const searchHandler = (event) => {
@@ -19,7 +22,7 @@ const Search = (props, { clearUsers, showClear, updateAlert }) =>  {
     if (search === '') {
       updateAlert('Please give me some input!', 'light');
     } else {
-      dispatch(searchUsersAction(search));      
+      dispatch(searchUsers(search));      
       setSearch(''); 
     }
   };
@@ -30,14 +33,14 @@ const Search = (props, { clearUsers, showClear, updateAlert }) =>  {
         <input type="text" name="text" placeholder="Search for users... " value={ search } onChange={searchHandler} />
         <input type="submit" value="Search" className="btn btn-dark btn-block" />
       </form> 
-      {showClear ? <button onClick={clearUsers} className="btn btn-light btn-block">Reset</button> : null}
+      {users.users.length ? <button onClick={() => dispatch(clearUsers())} className="btn btn-light btn-block">Reset</button> : null}
       
     </div>
   );
 };
 
 Search.propTypes = {
-  clearUsers: PropTypes.func.isRequired, 
+  // clearUsers: PropTypes.func.isRequired, 
   showClear: PropTypes.bool.isRequired
 };
 
