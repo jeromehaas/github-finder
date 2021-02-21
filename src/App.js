@@ -8,6 +8,8 @@ import axios from 'axios';
 import Search from 'components/users/Search';
 import Alert from 'components/layout/Alert';
 import About from 'components/pages/About';
+import { connect } from 'react-redux';
+import { getUserAction, searchUsersAction } from 'redux/actions/';
 
 
 const App = () => {
@@ -18,26 +20,26 @@ const App = () => {
   const [user, setUser] = useState({});
   const [userRepos, setUserRepos] = useState([]);
 
-  const getUser = async (username) => {
-    setLoading(true);
-    const res = await axios.get(`https://api.github.com/users/${username}?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`);
-    setUser(res.data);
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-  };
+  // const getUser = async (username) => {
+  //   setLoading(true);
+  //   const res = await axios.get(`https://api.github.com/users/${username}?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`);
+  //   setUser(res.data);
+  //   setTimeout(() => {
+  //     setLoading(false);
+  //   }, 2000);
+  // };
 
-  const searchUsers = async (text) => {
-    setLoading(true);
-    const res = await axios.get(`https://api.github.com/search/users?q=${text}&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`);
-    setUsers(res.data.items);
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-  };
+  // const searchUsers = async (username) => {
+  //   setLoading(true);
+  //   // const res = await axios.get(`https://api.github.com/search/users?q=${username}&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`);
+  //   let users = props.dispatch(searchUsersAction(username));
+  //   setTimeout(() => {
+  //     setLoading(false);
+  //   }, 2000);
+  // };
 
-  const updateAlert = (message, type) => {
-    setAlert({message, type});
+  const updateAlert = (message, cat) => {
+    setAlert({message, cat});
     setTimeout(() => {
       setAlert(null); 
     }, 5000);
@@ -64,12 +66,12 @@ const App = () => {
           <Alert alert={alert} />
           <Switch>
             <Route exact path='/user/:login' render={props => (
-              <User { ...props } user={user} userRepos={userRepos} getUser={getUser} getUserRepos={getUserRepos} loading={loading} />
+              <User { ...props } user={user} userRepos={userRepos} getUser={getUserAction} getUserRepos={getUserRepos} loading={loading} />
             )} />
             <Route exact path='/about' component={About} />
             <Route path='/' render={props => (
               <Fragment>
-                <Search searchUsers={searchUsers} clearUsers={clearUsers} showClear={ users.length ? true : false} updateAlert={updateAlert} />
+                <Search  clearUsers={clearUsers} showClear={ users.length ? true : false} updateAlert={updateAlert} />
                 <Users users={users} loading={loading} />
               </Fragment>
             )} />
@@ -80,4 +82,5 @@ const App = () => {
   );
 };
 
-export default App;
+
+export default connect()(App);

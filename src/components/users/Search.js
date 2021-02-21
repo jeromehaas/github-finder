@@ -1,7 +1,11 @@
 import React, { Component, useState } from 'react';
 import PropTypes from 'prop-types';
+import { searchUsersAction } from 'redux/actions/';
+import { connect, useSelector, useDispatch } from 'react-redux';
 
-const Search = ({ searchUsers, clearUsers, showClear, updateAlert }) =>  {
+const Search = (props, { clearUsers, showClear, updateAlert }) =>  {
+
+  const dispatch = useDispatch();
 
   const [search, setSearch] = useState('');
 
@@ -15,7 +19,7 @@ const Search = ({ searchUsers, clearUsers, showClear, updateAlert }) =>  {
     if (search === '') {
       updateAlert('Please give me some input!', 'light');
     } else {
-      searchUsers(search);
+      dispatch(searchUsersAction(search));      
       setSearch(''); 
     }
   };
@@ -33,9 +37,14 @@ const Search = ({ searchUsers, clearUsers, showClear, updateAlert }) =>  {
 };
 
 Search.propTypes = {
-  searchUsers: PropTypes.func.isRequired, 
   clearUsers: PropTypes.func.isRequired, 
   showClear: PropTypes.bool.isRequired
 };
 
-export default Search;
+const mapStateToProps = (state) => {
+  return {
+    data: state
+  };
+};
+
+export default connect(mapStateToProps)(Search);
