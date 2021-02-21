@@ -3,8 +3,8 @@ import RepoItem from 'components/repos/RepoItem';
 import PropTypes from 'prop-types';
 
 
-const Repos = (userRepos) => {
-  return userRepos.map(repo => <RepoItem repo={repo} key={repo.id} />);
+const Repos = ({repos}) => {
+  return repos.map(repo => <RepoItem repo={repo} key={repo.id} />);
   
 };
 
