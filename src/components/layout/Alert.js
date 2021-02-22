@@ -1,8 +1,12 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
-const Alert = ({ alert }) => {
+const Alert = () => {
+
+  const alert = useSelector((state) => state.alerts);
+
   return (
-    alert !== null && (
+    alert.status === 'active' && (
       <div className={`alert alert-${alert.type}`}>
         <i className='fas fa-info-circle' /> {alert.message}
       </div>

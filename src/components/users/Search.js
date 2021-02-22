@@ -2,13 +2,14 @@ import React, { Component, useState } from 'react';
 import PropTypes from 'prop-types';
 import { searchUsers } from 'redux/actions/';
 import { connect, useSelector, useDispatch } from 'react-redux';
-import { clearUsers } from 'redux/actions';
+import { clearUsers, updateAlert  } from 'redux/actions';
 
 
-const Search = (props, { showClear, updateAlert }) =>  {
+const Search = () =>  {
   
   const dispatch = useDispatch();
   const users = useSelector((state) => state.users);
+  const alert = useSelector((state) => state.alerts);
   
   const [search, setSearch] = useState('');
 
@@ -20,7 +21,10 @@ const Search = (props, { showClear, updateAlert }) =>  {
   const formHandler = (event) => {
     event.preventDefault();
     if (search === '') {
-      updateAlert('Please give me some input!', 'light');
+      dispatch(updateAlert('Please give me some input!', 'active'));
+      setTimeout(() => {
+        dispatch(updateAlert('', 'inactive'));
+      }, 3000);
     } else {
       dispatch(searchUsers(search));      
       setSearch(''); 

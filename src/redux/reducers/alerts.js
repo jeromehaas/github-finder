@@ -8,7 +8,8 @@ const alerts = (state = initialState, action) => {
   case 'UPDATE_ALERT':
     return {
       ...state, 
-      data: [...state.data, {}]
+      message: action.payload.message,
+      status: action.payload.status
     };
   default: 
     return state;
