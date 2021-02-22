@@ -84,6 +84,15 @@ const updateSearch = (value) => {
   };
 };
 
+const toggleTheme = (currentTheme) => {
+  return (dispatch) => {
+    dispatch({
+      type: 'TOGGLE_THEME',
+      payload: currentTheme
+    });
+  };
+};
+
 export {
   searchUsers,
   getUser,
@@ -91,6 +100,7 @@ export {
   clearUsers,
   updateAlert,
   updateLoader,
-  updateSearch
+  updateSearch,
+  toggleTheme
 };
 
