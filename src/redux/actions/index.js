@@ -75,12 +75,22 @@ const updateLoader = (status) => {
   };
 };
 
+const updateSearch = (value) => {
+  return (dispatch) => {
+    dispatch({
+      type: 'UPDATE_SEARCH',
+      payload: value
+    });
+  };
+};
+
 export {
   searchUsers,
   getUser,
   getUserRepos,
   clearUsers,
   updateAlert,
-  updateLoader
+  updateLoader,
+  updateSearch
 };
 
