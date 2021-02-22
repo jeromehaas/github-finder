@@ -1,8 +1,7 @@
 import React, { Component, useState } from 'react';
-import PropTypes from 'prop-types';
 import { searchUsers } from 'redux/actions/';
 import { connect, useSelector, useDispatch } from 'react-redux';
-import { clearUsers, updateAlert  } from 'redux/actions';
+import { clearUsers, updateAlert, updateLoader  } from 'redux/actions';
 
 
 const Search = () =>  {
@@ -26,8 +25,12 @@ const Search = () =>  {
         dispatch(updateAlert('', 'inactive'));
       }, 3000);
     } else {
+      dispatch(updateLoader('active'));
       dispatch(searchUsers(search));      
       setSearch(''); 
+      setTimeout(() => {
+        dispatch(updateLoader('inactive'));
+      }, 2000);
     }
   };
 
@@ -41,11 +44,6 @@ const Search = () =>  {
       
     </div>
   );
-};
-
-Search.propTypes = {
-  // clearUsers: PropTypes.func.isRequired, 
-  showClear: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = (state) => {

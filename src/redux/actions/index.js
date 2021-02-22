@@ -66,11 +66,21 @@ const updateAlert = (message, status) => {
   };
 };
 
+const updateLoader = (status) => {
+  return (dispatch) => {
+    dispatch({
+      type: 'UPDATE_LOADER', 
+      payload: status
+    });
+  };
+};
+
 export {
   searchUsers,
   getUser,
   getUserRepos,
   clearUsers,
-  updateAlert
+  updateAlert,
+  updateLoader
 };
 

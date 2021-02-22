@@ -1,18 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { getUser, getUserRepos } from 'redux/actions/';
+import { useDispatch } from 'react-redux';
+import { getUser, getUserRepos, updateLoader } from 'redux/actions/';
 
 const UserItem = ({ user }) => {
-
+  
+  const { login, avatar_url } = user;
+  
   const dispatch = useDispatch();
-  const { login, avatar_url, html_url } = user;
-
   const buttonHandler = (username) => {
-    console.log('hello');
     dispatch(getUser(username));
     dispatch(getUserRepos(username));
+    dispatch(updateLoader('active'));
+    setTimeout(() => {
+      dispatch(updateLoader('inactive'));
+    }, 2000);
   };
 
   return (

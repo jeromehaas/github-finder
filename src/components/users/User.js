@@ -7,16 +7,19 @@ import Repos  from 'components/repos/Repos';
 import { getUser } from 'redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { updateLoader } from 'redux/actions';
 
 const User = ( ) => {
   
+  const dispatch = useDispatch();
+
   const user = useSelector((state) => state.users.user);
   const repos = useSelector((state) => state.users.repos);
-  
-  console.log('user', user);
-  console.log('repos', repos);
-  
-  const user2 = undefined;
+  const loaders = useSelector((state) => state.loaders);
+
+  if (loaders.status === 'active') {
+    return <Spinner />;
+  }
 
   return (
     <Fragment>

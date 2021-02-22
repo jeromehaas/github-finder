@@ -10,9 +10,7 @@ import Alert from 'components/layout/Alert';
 import About from 'components/pages/About';
 import { connect } from 'react-redux';
 
-
 const App = () => {
-
   return (
     <Router>
       <div className="App">
@@ -36,6 +34,5 @@ const App = () => {
     </Router>
   );
 };
-
 
 export default connect()(App);

@@ -1,14 +1,18 @@
 import React from 'react';
 import UserItem from 'components/users/UserItem';
 import Spinner from 'components/layout/Spinner';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { useSelector } from 'react-redux';
 
 const Users = () =>  {
 
   const users = useSelector((state) => state.users.users);
+  const loaders = useSelector((state) => state.loaders);
   
+  if (loaders.status === 'active') {
+    return <Spinner />;
+  }
+
   return (
     <div style={userStyle}>
       {users.map((user) => (
@@ -16,14 +20,9 @@ const Users = () =>  {
       ))}
     </div>
   );
-  
-};
 
-Users.propTypes = {
-  users: PropTypes.array.isRequired,
-  loading: PropTypes.bool.isRequired
 };
-
+      
 const userStyle = {
   display: 'grid',
   gridTemplateColumns: 'repeat(3, 1fr)',
