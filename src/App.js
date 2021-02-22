@@ -15,8 +15,6 @@ import DarkTheme from 'components/themes/Dark';
 import { useDispatch, useSelector } from 'react-redux'; 
 import GlobalStyle from 'components/themes/GlobalStyle';
 
-
-
 const App = () => {
 
   const theme = useSelector((state) => state.theme);

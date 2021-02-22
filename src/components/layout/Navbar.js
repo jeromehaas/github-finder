@@ -6,7 +6,7 @@ import Toggle from 'components/partials/Toggle';
 import theme from 'components/themes/Light';
 
 const Nav = styled.nav`
-  background-color: red;
+  background-color: ${p => p.theme.primary};
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -15,6 +15,13 @@ const Nav = styled.nav`
   width: 100%;
   opacity: 0.9;
   margin-bottom: 1rem;
+
+  i {
+    margin-right: 10px;
+    font-size: 30px;
+  }
+
+  
 
 `;
 

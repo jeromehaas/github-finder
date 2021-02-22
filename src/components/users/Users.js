@@ -3,6 +3,13 @@ import UserItem from 'components/users/UserItem';
 import Spinner from 'components/layout/Spinner';
 import { connect } from 'react-redux';
 import { useSelector } from 'react-redux';
+import styled from 'styled-components';
+
+const Container = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1em;
+`;
 
 const Users = () =>  {
 
@@ -14,19 +21,17 @@ const Users = () =>  {
   }
 
   return (
-    <div style={userStyle}>
+    <Container>
       {users.map((user) => (
         <UserItem user={user} key={user.login}>{user.login}</UserItem>
       ))}
-    </div>
+    </Container>
   );
 
 };
       
 const userStyle = {
-  display: 'grid',
-  gridTemplateColumns: 'repeat(3, 1fr)',
-  gridGap: '1em',
+
 };
 
 const mapStateToProps = (state) => {

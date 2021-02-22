@@ -14,7 +14,8 @@ const ToggleWrapper = styled.div`
     border: 1px solid #666;
     margin: auto;
     display: flex;
-    background-image: linear-gradient(to bottom, ${p => p.theme.primaryColor}, ${p => p.theme.secondaryColor});
+    transition: background-color 0.1s ease;
+    background-color: ${p => p.isDark ? p.theme.secondary :  p.theme.primary};
 `;
 
 const Notch = styled.div`
@@ -24,8 +25,9 @@ const Notch = styled.div`
     margin-top: 1px;
     background: white;
     border-radius: 50%;
-    transition: transform 0.1s linear;
-    transform: translate(${p => p.isActive ? '26px' : '1px'});
+    transition: transform 0.1s linear, background-color 0.1s linear ;
+    background-color: ${p => p.isDark ? p.theme.primary :  p.theme.secondary};
+    transform: translate(${p => p.isDark ? '26px' : '1px'});
 `;
 
 
@@ -37,8 +39,8 @@ const Toggle = ({isActive, onToggle}) => {
   console.log('theme fomr the actions', theme);
 
   return (
-    <ToggleWrapper onClick={() => dispatch(toggleTheme(theme.style))}>
-      <Notch isActive={theme.style === 'dark'} />
+    <ToggleWrapper isDark={theme.style === 'dark'} onClick={() => dispatch(toggleTheme(theme.style))}>
+      <Notch isDark={theme.style === 'dark'} />
     </ToggleWrapper>
   );
 };
