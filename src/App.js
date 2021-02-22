@@ -60,7 +60,7 @@ const App = () => {
   return (
     <Router>
       <div className="App">
-        <Navbar title={'GitHub Finder'} icon="fab fa-github" />
+        <Navbar title={'People of GitHub'} icon="fab fa-github" />
         <div className="container">
           <Alert alert={alert} />
           <Switch>

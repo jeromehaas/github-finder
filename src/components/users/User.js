@@ -6,15 +6,21 @@ import Spinner from 'components/layout/Spinner';
 import Repos  from 'components/repos/Repos';
 import { getUser } from 'redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 const User = ( ) => {
   
   const user = useSelector((state) => state.users.user);
   const repos = useSelector((state) => state.users.repos);
   
+  console.log('user', user);
+  console.log('repos', repos);
+  
+  const user2 = undefined;
+
   return (
     <Fragment>
-      {user && (
+      {user && repos ? (
         <>
           {user.login}
           <div className="card grid-2">
@@ -55,9 +61,13 @@ const User = ( ) => {
               <div className="badge badge-dark">Public Gists: {user.public_gists}</div>
             </div>
           </div>
+          
           <Repos repos={repos} />
+         
           <Link to='/' >Back to Search</Link>
         </>
+      ) : (
+        <Link to='/' >Back to Search</Link>
       )}
     </Fragment>
   );

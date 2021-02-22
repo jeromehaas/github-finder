@@ -1,5 +1,6 @@
 const initialState = {
-  data: []
+  message: '',
+  status: 'inactive'
 };
 
 const alerts = (state = initialState, action) => {

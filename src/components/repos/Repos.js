@@ -4,12 +4,13 @@ import PropTypes from 'prop-types';
 
 
 const Repos = ({repos}) => {
-  return repos.map(repo => <RepoItem repo={repo} key={repo.id} />);
-  
+  {console.log('repos from here', repos);
+    return repos.map(repo => <RepoItem repo={repo} key={repo.id} />);
+  }
 };
 
-Repos.propTypes = {
-  userRepos: PropTypes.array.isRequired
-};
+// Repos.propTypes = {
+//   userRepos: PropTypes.array.isRequired
+// };
 
 export default Repos;

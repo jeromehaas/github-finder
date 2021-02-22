@@ -5,22 +5,17 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { useSelector } from 'react-redux';
 
-const Users = (props, { loading }) =>  {
+const Users = () =>  {
 
   const users = useSelector((state) => state.users.users);
   
-  if (loading) {
-    return <Spinner />;
-  } else {
-
-    return (
-      <div style={userStyle}>
-        {users.map((user) => (
-          <UserItem user={user} key={user.login}>{user.login}</UserItem>
-        ))}
-      </div>
-    );
-  }
+  return (
+    <div style={userStyle}>
+      {users.map((user) => (
+        <UserItem user={user} key={user.login}>{user.login}</UserItem>
+      ))}
+    </div>
+  );
   
 };
 
