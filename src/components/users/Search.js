@@ -5,6 +5,12 @@ import { clearUsers, updateAlert, updateLoader, updateSearch } from 'redux/actio
 import styled from 'styled-components';
 import theme from 'components/themes/Light';
 
+const Form = styled.form`
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+`;
+
 const Input = styled.input`
     padding: 4px 8px;
     border-radius: 4px;
@@ -51,20 +57,12 @@ const Search = () =>  {
 
   return (
     <div>
-      <form onSubmit={formHandler}>
+      <Form onSubmit={formHandler}>
         <Input type="text" name="text" placeholder="Search for users... " value={ search.value } onChange={searchHandler} />
-        <Input type="submit" value="Search" className="btn btn-dark btn-block" />
-      </form> 
-      {users.users.length ? <button onClick={() => dispatch(clearUsers())} className="btn btn-light btn-block">Reset</button> : null}
-      
+        <Input type="submit" value="Search" style={{width: '200px'}} className="btn btn-dark btn-block" />
+      </Form> 
     </div>
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    data: state
-  };
-};
-
-export default connect(mapStateToProps)(Search);
+export default Search;

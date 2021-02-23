@@ -5,6 +5,7 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    /* transition: all 0.2s ease; */
   }
 
   body{
@@ -21,7 +22,7 @@ const GlobalStyle = createGlobalStyle`
     width: 100;
     text-align: center;
     display: inline-block;
-    background-color: red;
+    background-color: ${p => p.theme.secondary};
   }
 `;
 
