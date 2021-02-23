@@ -9,11 +9,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { updateLoader } from 'redux/actions';
 import styled from 'styled-components';
+import OverviewItem from 'components/overview/OverviewItem';
 
 const Card = styled.div`
-  background-color: ${p => p.theme.primary};
   border-radius: ${p => p.theme.borderRadius};
-  padding: 30px;
+  
 `;
 
 const Layout = styled.div`
@@ -22,7 +22,7 @@ const Layout = styled.div`
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
   gap: 15px 15px;
   grid-template-areas:
-    "profile folowers following publicRepos"
+    "profile overview overview overview"
     "profile repo repo repo"
     "profile repo repo repo"
     "profile repo repo repo"
@@ -31,6 +31,8 @@ const Layout = styled.div`
 
 const Profile = styled(Card)`
   grid-area: profile;
+  background-color: ${p => p.theme.primary};
+  padding: 30px;
 
   img {
     border-radius: 50%;
@@ -40,26 +42,36 @@ const Profile = styled(Card)`
   }
 `;
 
-const Followers = styled(Card)`
-  grid-area: followers;
+const Overview = styled(Card)`
+  grid-area: overview;
   display: flex;
   gap: 15px;
-`;
+  display: flex;
 
-const Following = styled(Card)`
-  grid-area: following;
-  display: flex;
-  gap: 15px;
-`;
-
-const PublicRepos = styled(Card)`
-  grid-area: publicRepos;
-  display: flex;
-  gap: 15px;
+  .item {
+    background-color: ${p => p.theme.primary};
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 const Repo = styled(Card)`
   grid-area: repo;
+
+  .item {
+    padding: 30px;
+    background-color: ${p => p.theme.primary};
+    margin-bottom: 15px;
+  }
+
+  .item:last-child {
+    margin-bottom: 0px;
+  }
 `;
 
 const User = ( ) => {
@@ -108,17 +120,11 @@ const User = ( ) => {
               <a href={user.html_url} className='btn btn-dark my-1'>Visit GitHub Profile</a>
 
             </Profile>
-            <Following>
-              <div className="badge badge-success">Following: {user.followers}</div>
-            </Following>
-            <Followers>
-              <div className="badge badge-primary">Followers: {user.followers}</div>
-            </Followers>
-            <PublicRepos>
-              <div className="badge badge-light">Public Repos: {user.public_repos}</div>
-            </PublicRepos>
-
-            
+            <Overview>
+              <OverviewItem title={'Followers'} amount={user.followers} />
+              <OverviewItem title={'Following'} amount={user.following} />
+              <OverviewItem title={'Public Repos'} amount={user.public_repos} />
+            </Overview>
             <Repo>
               <Repos repos={repos} />
             </Repo>

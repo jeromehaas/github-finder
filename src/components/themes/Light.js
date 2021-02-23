@@ -5,6 +5,7 @@ const theme = {
   tertiary: '#181A1D',
   borderRadius: '5px',
   padding: '30px',
+  maxWidth: '1000px',
 };
 
 export default theme;

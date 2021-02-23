@@ -14,6 +14,14 @@ import LightTheme from 'components/themes/Light';
 import DarkTheme from 'components/themes/Dark';
 import { useDispatch, useSelector } from 'react-redux'; 
 import GlobalStyle from 'components/themes/GlobalStyle';
+import styled from 'styled-components';
+
+const Container = styled.div`
+  max-width: ${p => p.theme.maxWidth};
+  margin: auto;
+  overflow: hidden;
+  padding: 0 30px;
+`;
 
 const App = () => {
 
@@ -25,7 +33,7 @@ const App = () => {
       <Router>
         <div>
           <Navbar title={'People of GitHub'} icon="fab fa-github" />
-          <div className="container">
+          <Container>
             <Alert />
             <Switch>
               <Route exact path='/user/:login' render={props => (
@@ -39,7 +47,7 @@ const App = () => {
                 </Fragment>
               )} />
             </Switch>
-          </div>
+          </Container>
         </div>
       </Router>
     </ThemeProvider>
