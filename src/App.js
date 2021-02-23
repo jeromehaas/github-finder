@@ -20,7 +20,8 @@ const Container = styled.div`
   max-width: ${p => p.theme.maxWidth};
   margin: auto;
   overflow: hidden;
-  padding: 0 30px;
+  padding: 0 30px 100px 30px;
+  position: relative;
 `;
 
 const App = () => {

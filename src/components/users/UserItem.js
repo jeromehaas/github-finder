@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { getUser, getUserRepos, updateLoader } from 'redux/actions/';
 import styled from 'styled-components';
-import theme from 'components/themes/Light';
+
 
 const Card = styled.div`
   padding: ${p => p.theme.padding};
@@ -40,6 +40,7 @@ const Button = styled(Link)`
     grid-area: button;
     border-radius: ${p => p.theme.borderRadius};
     align-self: end;
+
 `;
 
 const UserItem = ({ user }) => {
@@ -60,7 +61,7 @@ const UserItem = ({ user }) => {
     <Card>
       <img src={avatar_url} />
       <h3>{login}</h3>
-      <Button to={`/user/${login}`} className={'button'} onClick={() => buttonHandler(login)} >
+      <Button to={`/user/${login}`} onClick={() => buttonHandler(login)} >
           More
       </Button>
     

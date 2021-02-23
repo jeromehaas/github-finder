@@ -1,10 +1,10 @@
 import React from 'react';
 import UserItem from 'components/users/UserItem';
-import Spinner from 'components/layout/Spinner';
 import { connect } from 'react-redux';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { clearUsers } from 'redux/actions';
+import Spinner from 'components/layout/Spinner';
 
 const Container = styled.div`
   display: grid;
@@ -19,6 +19,10 @@ const ResetButton = styled.button`
   background-color: ${p => p.theme.primary};
   border: none;
   outline: none;
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
 
   img {
     width: 30%;
@@ -33,9 +37,14 @@ const Users = () =>  {
   const users = useSelector((state) => state.users.users);
   const loaders = useSelector((state) => state.loaders);
   const theme = useSelector((state) => state.theme);
+  const color = theme.style === 'dark' ? '#181A1D' : '#ffffff';
   
   if (loaders.status === 'active') {
-    return <Spinner />;
+
+
+    return (
+      <Spinner />
+    );
   }
 
   return (
@@ -57,9 +66,7 @@ const Users = () =>  {
 
 };
       
-const userStyle = {
 
-};
 
 const mapStateToProps = (state) => {
   return {

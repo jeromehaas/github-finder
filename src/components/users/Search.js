@@ -18,7 +18,7 @@ const Input = styled.input`
     font-size: 1em;
     padding: 15px !important;
     font-family: 'Open Sans';
-    margin-bottom: 8px;
+    margin-bottom: 15px;
     width: 100%;
     box-sizing: border-box;
     outline: none;
@@ -40,18 +40,14 @@ const Search = () =>  {
 
   const formHandler = (event) => {
     event.preventDefault();
-    if (search.value === '') {
-      dispatch(updateAlert('Please give me some input!', 'active'));
-      setTimeout(() => {
-        dispatch(updateAlert('', 'inactive'));
-      }, 3000);
-    } else {
+    if (search.value !== ''){
       dispatch(updateLoader('active'));
       dispatch(searchUsers(search.value));      
       dispatch(updateSearch(''));
       setTimeout(() => {
         dispatch(updateLoader('inactive'));
       }, 2000);
+
     }
   };
 

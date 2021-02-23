@@ -1,19 +1,13 @@
 import React, { Fragment, useEffect} from 'react';
-import { BrowserRouter as Router, Switch, Route, useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import Spinner from 'components/layout/Spinner';
 import Repos  from 'components/repos/Repos';
-import { getUser } from 'redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-import { updateLoader } from 'redux/actions';
 import styled from 'styled-components';
 import OverviewItem from 'components/overview/OverviewItem';
 
 const Card = styled.div`
   border-radius: ${p => p.theme.borderRadius};
-  
 `;
 
 const Layout = styled.div`

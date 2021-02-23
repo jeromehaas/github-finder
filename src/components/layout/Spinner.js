@@ -1,11 +1,20 @@
 import React, { Fragment } from 'react';
-import spinnerImage from 'media/spinners/spinner.gif';
+import Loader from 'react-loader-spinner';
+import { useSelector, useDispatch } from 'react-redux';
+
 
 const Spinner = () => {
+  const theme = useSelector((state) => state.theme);
+  const color = theme.style === 'dark' ? '#181A1D' : '#ffffff';
   return (
-    <Fragment>
-      <img src={spinnerImage} alt="spinner" style={{ width: '200px', margin: '0 auto', display: 'block'}} /> 
-    </Fragment>
+    <Loader
+      type="Puff"
+      color={color}
+      height={60}
+      width={60}
+      timeout={2000}
+      style={{textAlign: 'center', padding: '30px'}}
+    />
   );
 };
 

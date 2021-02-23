@@ -1,4 +1,5 @@
 import { createGlobalStyle} from 'styled-components';
+// import darkCursor from 'puclic/icons/cursor_dark.svg';
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -23,6 +24,15 @@ const GlobalStyle = createGlobalStyle`
     text-align: center;
     display: inline-block;
     background-color: ${p => p.theme.secondary};
+  }
+
+  li {
+    list-style-type: none;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
   }
 `;
 
