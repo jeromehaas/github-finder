@@ -22,12 +22,42 @@ const Card = styled.div`
   img {
     border-radius: 50%;
     width: 100%;
+    min-width: 85px;
     grid-area: image;
   }
 
   h3 {
     align-self: center;
     grid-area: username;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 20px;
+  }
+
+  @media(max-width: 760px) {
+  grid-template-areas:
+    ". image ."
+    "username username username"
+    "button button button";
+
+  img {
+    border-radius: 50%;
+    width: 100px;
+    margin: 0 auto;
+    grid-area: image;
+  }
+
+  h3 {
+    align-self: center;
+    text-align: center;
+    grid-area: username;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 25px;
+   }
+
   }
 `;
 
@@ -46,6 +76,7 @@ const Button = styled(Link)`
 const UserItem = ({ user }) => {
   
   const { login, avatar_url } = user;
+
   
   const dispatch = useDispatch();
   const buttonHandler = (username) => {

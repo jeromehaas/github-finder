@@ -3,9 +3,6 @@ import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleTheme } from 'redux/actions';
 
-
-
-
 const ToggleWrapper = styled.div`
     width: 50px;
     min-width: 50px;
@@ -30,13 +27,11 @@ const Notch = styled.div`
     transform: translate(${p => p.isDark ? '26px' : '1px'});
 `;
 
-
 const Toggle = ({isActive, onToggle}) => {
 
   const dispatch = useDispatch();
 
   const theme = useSelector((state) => state.theme);
-  console.log('theme fomr the actions', theme);
 
   return (
     <ToggleWrapper isDark={theme.style === 'dark'} onClick={() => dispatch(toggleTheme(theme.style))}>

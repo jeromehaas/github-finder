@@ -93,6 +93,15 @@ const toggleTheme = (currentTheme) => {
   };
 };
 
+const toggleNavigation = (currentStatus) => {
+  return (dispatch) => {
+    dispatch({
+      type: 'TOGGLE_NAVIGATION', 
+      payload: currentStatus
+    });
+  };
+};
+
 export {
   searchUsers,
   getUser,
@@ -101,6 +110,7 @@ export {
   updateAlert,
   updateLoader,
   updateSearch,
-  toggleTheme
+  toggleTheme,
+  toggleNavigation
 };
 

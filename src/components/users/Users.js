@@ -10,6 +10,14 @@ const Container = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 1em;
+
+  @media(max-width: 1060px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+ 
+  @media(max-width: 760px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
 `;
 
 const ResetButton = styled.button`
@@ -28,6 +36,7 @@ const ResetButton = styled.button`
     width: 30%;
     height: 30%;
   }
+
 `;
 
 const Users = () =>  {
@@ -40,7 +49,6 @@ const Users = () =>  {
   const color = theme.style === 'dark' ? '#181A1D' : '#ffffff';
   
   if (loaders.status === 'active') {
-
 
     return (
       <Spinner />
