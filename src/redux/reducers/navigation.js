@@ -7,7 +7,7 @@ const navigation = (state = initialState, action) => {
   case 'TOGGLE_NAVIGATION':
     return {
       ...state, 
-      style: action.payload === 'open' ? 'closed' : 'open'
+      status: action.payload === 'open' ? 'closed' : 'open'
     };
   default: 
     return state;
