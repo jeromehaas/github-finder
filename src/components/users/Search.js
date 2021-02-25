@@ -9,6 +9,12 @@ const Form = styled.form`
   display: flex;
   flex-direction: row;
   gap: 15px;
+
+  @media(max-width:450px) {
+    flex-direction: column; 
+    gap: 0px;
+  }
+
 `;
 
 const Input = styled.input`
@@ -23,7 +29,11 @@ const Input = styled.input`
     box-sizing: border-box;
     outline: none;
     background-color: ${p => p.theme.primary};
-    color: ${p => p.theme.tertiary}
+    color: ${p => p.theme.tertiary};
+
+    @media(max-width:450px) {
+    width: 100% !important; 
+  
 `;
 
 const Search = () =>  {

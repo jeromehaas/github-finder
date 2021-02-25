@@ -13,8 +13,6 @@ const Card = styled.div`
 
 const Layout = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
   gap: 15px 15px;
   grid-template-areas:
     "profile overview overview overview"

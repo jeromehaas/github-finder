@@ -10,7 +10,7 @@ import { toggleNavigation } from 'redux/actions';
 
 const Nav = styled.nav`
   background-color: ${p => p.theme.primary};
-  padding: 0.7rem 2rem;
+  padding: 15px 30px;
   z-index: 1;
   width: 100%;
   opacity: 0.9;
@@ -34,6 +34,21 @@ const Nav = styled.nav`
     align-items: center;
   }
 
+  .hamburger-react,
+  .hamburger-react div {
+    transition: all 0s ease !important;
+  }
+
+  .menu {
+    max-height: 0px;
+    overflow: hidden;
+  }
+
+  .menu.active {
+    max-height: unset;
+    overflow: hidden;
+  }
+
   i {
     margin-right: 10px;
     font-size: 30px;
@@ -45,8 +60,24 @@ const Nav = styled.nav`
   }
 
   li {
-    margin-left: 15px;
+    padding: 20px 0;
+    margin: 0 auto 0 auto;
+    border-bottom: 1px solid black;
+    width: 100%;
+    text-align: center;
   }
+
+  li:last-child {
+    border: none;
+  }
+
+  @media(max-width: 1055px) {
+    .container {
+    padding: 0;
+
+  }
+
+}
 
   @media(max-width: 760px) {
     .desktopNav {
@@ -56,6 +87,25 @@ const Nav = styled.nav`
   .mobileNav {
     display: block;
   }
+
+ h1 {
+   font-size: 20px;
+ }
+
+  i {
+    margin-right: 10px;
+    font-size: 20px;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  li {
+    margin: 0 auto 0 auto;
+  }
+
   }
 `;
 
@@ -81,15 +131,18 @@ const Navbar = ({ icon, title }) => {
       </div> 
       <div className="mobileNav">
         <div className="container">
-
           <h1> 
             <i className={ icon }></i> { title }
           </h1>
           <ul>
-            {/* <li><Link to='/'>Home</Link></li>
-            <li><Link to='/about'>About</Link></li>
-            <li><Toggle isActive={theme.id === 'light'} /></li> */}
             <Hamburger toggled={navigation.status === 'open' ? true : false } toggle={() => dispatch(toggleNavigation(navigation.status))} />
+          </ul>
+        </div>
+        <div className={`menu ${navigation.status === 'open' ? 'active' : 'closed'}`}>
+          <ul>
+            {/* <li><Link to='/about' onClick={() => dispatch(toggleNavigation(navigation.status))}>About</Link></li> */}
+            <li><Link to='/' onClick={() => dispatch(toggleNavigation(navigation.status))}>Home</Link></li>
+            <li><Toggle isActive={theme.id === 'light'} /></li> 
           </ul>
         </div>
       </div>
