@@ -61,10 +61,10 @@ const Nav = styled.nav`
 
   li {
     padding: 20px 0;
-    margin: 0 auto 0 auto;
-    border-bottom: 1px solid black;
-    width: 100%;
-    text-align: center;
+    margin: 0 0 0 20px;
+    line-height: 25px;
+
+
   }
 
   li:last-child {
@@ -103,7 +103,15 @@ const Nav = styled.nav`
   }
   
   li {
+    padding: 20px 0;
     margin: 0 auto 0 auto;
+    border-bottom: 1px solid black;
+    width: 100%;
+    text-align: center;
+  }
+
+  li:last-child {
+    border: none;
   }
 
   }
