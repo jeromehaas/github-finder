@@ -131,7 +131,7 @@ const Navbar = ({ icon, title }) => {
             <i className={ icon }></i> { title }
           </h1>
           <ul>
-            <li><Link to='/'>Home</Link></li>
+            <li><Link to='/'>Start</Link></li>
             <li><Link to='/about'>About</Link></li>
             <li><Toggle isActive={theme.id === 'light'} /></li>
           </ul>
@@ -149,7 +149,7 @@ const Navbar = ({ icon, title }) => {
         <div className={`menu ${navigation.status === 'open' ? 'active' : 'closed'}`}>
           <ul>
             {/* <li><Link to='/about' onClick={() => dispatch(toggleNavigation(navigation.status))}>About</Link></li> */}
-            <li><Link to='/' onClick={() => dispatch(toggleNavigation(navigation.status))}>Home</Link></li>
+            <li><Link to='/' onClick={() => dispatch(toggleNavigation(navigation.status))}>Start</Link></li>
             <li><Toggle isActive={theme.id === 'light'} /></li> 
           </ul>
         </div>

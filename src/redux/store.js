@@ -10,6 +10,7 @@ const store = createStore(
   compose(
     applyMiddleware(thunk))
 );
+
 // FOR DEVELOPMENT USE THIS ONE
 // const store = createStore(
 //   rootReducer,

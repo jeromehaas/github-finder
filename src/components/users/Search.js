@@ -23,7 +23,7 @@ const Input = styled.input`
     border: none !important;
     font-size: 1em;
     padding: 15px !important;
-    font-family: 'Open Sans';
+    font-family: 'Roboto', sans-serif;
     margin-bottom: 15px;
     width: 100%;
     box-sizing: border-box;
@@ -33,7 +33,8 @@ const Input = styled.input`
 
     @media(max-width:450px) {
     width: 100% !important; 
-  
+    }
+
 `;
 
 const Search = () =>  {
